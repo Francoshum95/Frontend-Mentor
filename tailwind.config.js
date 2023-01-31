@@ -3,8 +3,7 @@ module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
- 
+    "./components/**/*.{js,ts,jsx,tsx}", 
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
@@ -26,8 +25,8 @@ module.exports = {
         'body': 'Ubuntu'
       },
       backgroundImage: {
-        'sidebar-desktop': 'url(./src/assets/bg-sidebar-desktop.svg)',
-        'sidebar-mobile': 'url(./src/assets/bg-sidebar-mobile.svg)',
+        'sidebar-desktop': "url('/asset/bg-sidebar-desktop.svg')",
+        'sidebar-mobile': "url('/asset/bg-sidebar-mobile.svg')",
       },
       screens: {
         'mobile': {'max': '767px'}

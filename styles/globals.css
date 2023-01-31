@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-body text-[16px]
+  }
+}
+
+@layer components {
+  .container-mobile{
+    @apply w-[375px]
+  }
+
+  .container-desktop{
+    @apply w-[1440px]
+  }
+}
