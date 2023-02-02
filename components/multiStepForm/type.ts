@@ -18,6 +18,7 @@ export type selectFieldType = {
   switch: {
     unit: string,
     name: string,
+    title: string
   }[],
   selections: {
     id: number,

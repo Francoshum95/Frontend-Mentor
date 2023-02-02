@@ -60,7 +60,7 @@ const Picker = ({
       <span className="ml-auto text-sm text-purplish-blue">
       {`+$${
             price[fieldAnswer.unit]
-          }${selectField.switch[fieldAnswer.unit].unit}`}
+          }/${selectField.switch[fieldAnswer.unit].unit}`}
       </span>
 
     </div>

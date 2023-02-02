@@ -15,4 +15,3 @@ export const SELECTORICONMAP:{[id: number]: string} = {
   2: "/asset/icon-advanced.svg",
   3: "/asset/icon-pro.svg",
 }
-

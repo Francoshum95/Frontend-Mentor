@@ -36,7 +36,7 @@ const InputField = ({
     </div>
     <input
       className={` ${error ? 'border-strawberry-red' : 'border-magnolia'} border-2 rounded-md px-4 py-2 max-w-[450px] w-full
-        focus:outline-none focus:bg-white focus:border-purplish-blue
+        focus:outline-none focus:bg-white focus:border-purplish-blue 
         cursor-pointer mt-2 mobile:text-sm`}
       required={true}
       type={fieldType === 'email' ? 'email' : 'text'}

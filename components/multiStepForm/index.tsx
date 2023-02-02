@@ -6,6 +6,7 @@ import type { formType } from "./useMultiStepForm"
 import Controller from "./components/Controller"
 import SelectField from "./components/SelectField"
 import PickField from "./components/PickField"
+import Checkout from "./components/Checkout"
 
 export type propsType = {
   formStep: formStepType,
@@ -62,6 +63,13 @@ const RednerView = ({
       fieldAnswer,
       pickAnswer,
       onChangePickAnswer
+    }),
+    4: Checkout({
+      selectField,
+      pickField,
+      fieldAnswer,
+      pickAnswer,
+      onChangeUniteSwitch
     })
   }
   return viewMap[selectedStep]

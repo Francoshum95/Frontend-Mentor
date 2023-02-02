@@ -16,4 +16,16 @@
   .container-desktop{
     @apply w-[1440px]
   }
+
+  .select-box{
+    @apply px-3 py-5 border-[1px] rounded-md cursor-pointer
+  }
+  
+  .box-select{
+    @apply border-cool-gray
+  }
+
+  .box-selected {
+    @apply border-purplish-blue bg-alabaster
+  }
 }

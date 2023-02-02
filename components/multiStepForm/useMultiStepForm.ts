@@ -97,7 +97,7 @@ const useMultiStepForm:useMultiStepFormType = ({
   const defaultForm =  useMemo(() => getDefaultForm(personalFields), []);
 
   const [isLoading, setIsLoading] = useState<isLoadingType>(false)
-  const [selectedStep, setSelectedStep] = useState<selectedStepType>(constant.SELECTSTEP);
+  const [selectedStep, setSelectedStep] = useState<selectedStepType>(constant.CHECKOUTSTEP);
   const [formAnswer, setFormAnswer] = useState<formType>(defaultForm);
   const [fieldAnswer, setFieldAnswer] = useState<fieldAnswerType>({
     unit: constant.FIRSTSELECT, id: selectField.selections[0].id
@@ -170,8 +170,6 @@ const useMultiStepForm:useMultiStepFormType = ({
   }
 
   
-
-
   return {
     isLoading, 
     selectedStep,

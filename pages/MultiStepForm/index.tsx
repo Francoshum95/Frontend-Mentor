@@ -45,10 +45,12 @@ export const personalFields = [{
 export const selectField = {
   switch: [{
     unit: "mo",
-    name: "Monthly"
+    name: "Monthly",
+    title: "month"
   },{
     unit: "yr",
-    name: "Yearly"
+    name: "Yearly",
+    title: "year"
   }],
   selections: [{
     id: 1,

@@ -45,7 +45,7 @@ const Selector = ({
           <h3 className="text-marine-blue font-medium">{title}</h3>
           <h4 className="text-cool-gray md:text-sm">{`$${
             price[fieldAnswer.unit]
-          }${selectField.switch[fieldAnswer.unit].unit}`}</h4>
+          }/${selectField.switch[fieldAnswer.unit].unit}`}</h4>
           {fieldAnswer.unit === SECONDSELECT ? (
             <h5 className="text-marine-blue text-xs">{content}</h5>
           ) : null}
