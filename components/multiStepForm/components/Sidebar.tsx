@@ -18,7 +18,7 @@ const Sidebar = ({
         <div className="p-5 flex md:inline w-full items-center justify-center">
           {
             formStep.map(({id, sideBar}, index) => (
-              <div className="flex my-6 mx-4" key={id+1}>
+              <div className="flex my-6 mx-4" key={id}>
                 <span className={`
                   ${selectedStep === id ? 'bg-light-gray text-black' : 'text-light-gray'}
                   w-9 h-9 rounded-full border-2 border-light-gray

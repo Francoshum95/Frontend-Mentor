@@ -1,6 +1,6 @@
-import { MultiStepForm } from "@/components";
+import { MultiStepForm } from "@components/index";
 
-const formStep = [{
+export const formStep = [{
   id: 1,
   sideBar: "YOUR INFO",
   header: "Personal info",
@@ -20,28 +20,29 @@ const formStep = [{
   sideBar: "SUMMARY",
   header: "Finishing up",
   content: "Double-check everything looks OK before confirming."
-}]
-const personalFields = [{
-  id: 1,
+}];
+
+export const personalFields = [{
+  id: "1",
   field: "Name",
   placeholder: "e.g. Vanese Mint",
   fieldType: "text",
   isRequired: true
 }, {
-  id: 2,
-  field: "Email",
+  id: "2",
+  field: "Email Address",
   placeholder: "e.g. Vanesemint@gmail.com",
   fieldType: "email",
   isRequired: true
 }, {
-  id: 3,
+  id: "3",
   field: "Phone Number",
   placeholder: "e.g. +1 234 567 890",
   fieldType: "phone",
   isRequired: true
 }]
 
-const selectField = {
+export const selectField = {
   switch: [{
     unit: "mo",
     name: "Monthly"
@@ -49,7 +50,7 @@ const selectField = {
     unit: "yr",
     name: "Yearly"
   }],
-  seletions: [{
+  selections: [{
     id: 1,
     title: "Arcade",
     content: "2 months free",
@@ -67,7 +68,7 @@ const selectField = {
   }]
 }
 
-const pickField = [
+export const pickField = [
   {
     id: 1,
     title: "Online service",

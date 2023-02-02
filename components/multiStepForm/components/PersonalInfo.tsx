@@ -9,9 +9,9 @@ type props = {
 }
 
 type inputFieldType = {
-  id: number,
-  lable: string,
+  id: string,
   field: string,
+  fieldType: string,
   placeholder: string,
   value: string,
   error: string | null,
@@ -20,16 +20,16 @@ type inputFieldType = {
 
 const InputField = ({
   id,
-  lable,
+  fieldType,
   field,
   placeholder,
   value,
   error,
   onChange
 }: inputFieldType) => (
-  <div className="mt-4 text-marine-blue" key={id}>
+  <div className="mt-4 text-marine-blue">
     <div className="flex justify-between">
-      <label className="block mobile:text-xs">{lable}</label>
+      <label className="block mobile:text-xs">{field}</label>
       <label 
         className="block text-strawberry-red mobile:text-sx">{error}
       </label>
@@ -39,7 +39,7 @@ const InputField = ({
         focus:outline-none focus:bg-white focus:border-purplish-blue
         cursor-pointer mt-2 mobile:text-sm`}
       required={true}
-      type={field === 'email' ? 'email' : 'text'}
+      type={fieldType === 'email' ? 'email' : 'text'}
       placeholder={placeholder}
       value={value}
       onChange={(e) => onChange({id, value: e.target.value})}
@@ -59,16 +59,19 @@ const PersonalInfo = ({
       data-testid="step-1"
       >
         {
-          personalFields.map(({id, field, placeholder}) => (
-            <InputField
-              id={id}
-              lable="Name"
-              field={field}
-              placeholder={placeholder}
-              value={formAnswer[id]}
-              error={formError[id]}
-              onChange={onChangeFormAnswer}
-            />
+          personalFields.map(({id, field, placeholder, fieldType}) => (
+            <div key={id}>
+              <InputField
+                id={id}
+                field={field}
+                fieldType={fieldType}
+                placeholder={placeholder}
+                value={formAnswer[id]}
+                error={formError[id]}
+                onChange={onChangeFormAnswer}
+              />
+
+            </div>
           ))
 
         }

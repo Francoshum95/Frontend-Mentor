@@ -7,7 +7,7 @@ export type formStepType = {
 
 
 export type personalFieldsType = {
-  id: number,
+  id: string,
   field: string,
   placeholder: string,
   fieldType: string,
@@ -19,7 +19,7 @@ export type selectFieldType = {
     unit: string,
     name: string,
   }[],
-  seletions: {
+  selections: {
     id: number,
     title: string,
     content: string,

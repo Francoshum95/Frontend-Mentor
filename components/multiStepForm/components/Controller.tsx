@@ -1,6 +1,6 @@
 import { isLoadingType, onChangeSelectedFormStepType, selectedStepType } from "../useMultiStepForm"
 import {
-  INFOSTEP,
+  FORMSTEP,
   DONE,
   BACK,
   NEXT
@@ -17,11 +17,11 @@ const Controller = ({
   selectedStep,
   onChangeSelectedFormStep
 }: props) => {
-  const isBackDisable = selectedStep === INFOSTEP || selectedStep === DONE;
+  const isBackDisable = selectedStep === FORMSTEP || selectedStep === DONE;
   const isNextDisable = selectedStep === DONE;
 
   return (
-    <div className="w-full bg-white flex justify-between my-auto mb-0 md:px-[4rem] items-center mobile:p-4
+    <div className="w-full bg-white flex justify-between my-auto mb-0 md:px-[4rem] md:pb-6 items-center mobile:p-4
       mobile:absolute mobile:bottom-0">
       <button className={`${isBackDisable && 'invisible cursor-default text-light-gray hover:text-marine-blue'}`} 
         disabled={isBackDisable || isLoading}
