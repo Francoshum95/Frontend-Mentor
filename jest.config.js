@@ -12,7 +12,7 @@ const customJestConfig = {
   // Add more setup options before each test is run
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
-  moduleDirectories: ['node_modules', '<rootDir>/'],
+  moduleDirectories: ['<rootDir>', 'node_modules'],
 
   // If you're using [Module Path Aliases](https://nextjs.org/docs/advanced-features/module-path-aliases),
   // you will have to add the moduleNameMapper in order for jest to resolve your absolute paths.
@@ -21,19 +21,13 @@ const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
-  coverageReporters: [
-    "html",
-    "text"
-  ],
   transformIgnorePatterns: [
     '/node_modules/',
     '^.+\\.module\\.(css|sass|scss)$',
   ],
-  moduleNameMapper: {
-    '@/(.*)$': '<rootDir>/src/$1',
-  },
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
+    "@pages/(.*)": ["<rootDir>/pages/$1"],
     "@components/(.*)": ["<rootDir>/components/$1"],
   }
 }
