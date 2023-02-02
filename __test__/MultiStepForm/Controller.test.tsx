@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
-import { renderHook, act, cleanup, waitFor } from '@testing-library/react'
+import { renderHook, act } from '@testing-library/react'
 import useMultiStepForm from "@components/multiStepForm/useMultiStepForm";
-import { selectField, personalFields } from "@pages/MultiStepForm";
+import { selectField, personalFields, pickField } from "@pages/MultiStepForm";
 import * as constant from '@components/multiStepForm/constant';
 import { getDefaultForm } from "@components/multiStepForm/useMultiStepForm";
 
@@ -9,7 +9,7 @@ describe("<Controller/>", () => {
 
   describe("FORMSTEP View", () => {
     beforeEach(() => {
-      const { result } = renderHook(() => useMultiStepForm({selectField, personalFields}));
+      const {result} = renderHook(() => useMultiStepForm({ personalFields, selectField, pickField}));
 
       act(() => {
         result.current.selectedStep = constant.FORMSTEP;
@@ -18,7 +18,7 @@ describe("<Controller/>", () => {
     });
 
     it ("should not BACK", () => {
-      const { result } = renderHook(() => useMultiStepForm({selectField, personalFields}));
+      const {result} = renderHook(() => useMultiStepForm({ personalFields, selectField, pickField}));
 
       act(() => {
         result.current.onChangeSelectedFormStep(constant.BACK)
@@ -29,7 +29,7 @@ describe("<Controller/>", () => {
     });
 
     it ("should NEXT", () => {
-      const { result } = renderHook(() => useMultiStepForm({selectField, personalFields}));
+      const {result} = renderHook(() => useMultiStepForm({ personalFields, selectField, pickField}));
       act(() => {
         result.current.formAnswer = {"1": 'testing', "2": "testing@gmail.com", "3": "1234"};
       })

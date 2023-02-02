@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { selectField, personalFields } from "@pages/MultiStepForm";
+import { selectField, personalFields, pickField } from "@pages/MultiStepForm";
 import { renderHook, act } from '@testing-library/react'
 import useMultiStepForm from "@components/multiStepForm/useMultiStepForm";
 
@@ -10,7 +10,7 @@ const testPhone = "12345567"
 
 describe("<PersonalInfo/>", () => {
   it ("should change input field", () => {
-    const {result} = renderHook(() => useMultiStepForm({ personalFields, selectField}));
+    const {result} = renderHook(() => useMultiStepForm({ personalFields, selectField, pickField}));
     act(() => {
       result.current.onChangeFormAnswer({id: "1", value: testName});
     })

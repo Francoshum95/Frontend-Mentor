@@ -1,10 +1,11 @@
 import PersonalInfo from "./components/PersonalInfo"
 import Sidebar from "./components/Sidebar"
-import useMultiStepForm, { fieldAnswerType, onChangeFormAnswerType, onChangeUniteSwitchType, onSelectFieldSelectType, selectedStepType } from "./useMultiStepForm"
+import useMultiStepForm, { fieldAnswerType, onChangeFormAnswerType, onChangePickAnswerType, onChangeUniteSwitchType, onSelectFieldSelectType, pickAnswerType, selectedStepType } from "./useMultiStepForm"
 import type { formStepType, personalFieldsType, selectFieldType, pickFieldType } from "./type"
 import type { formType } from "./useMultiStepForm"
 import Controller from "./components/Controller"
 import SelectField from "./components/SelectField"
+import PickField from "./components/PickField"
 
 export type propsType = {
   formStep: formStepType,
@@ -16,25 +17,31 @@ export type propsType = {
 type RenderViewType = {
   personalFields: personalFieldsType,
   selectField: selectFieldType,
+  pickField: pickFieldType,
   selectedStep: selectedStepType,
   formError: formType,
   formAnswer: formType,
   fieldAnswer: fieldAnswerType,
+  pickAnswer: pickAnswerType
   onChangeFormAnswer: onChangeFormAnswerType,
   onSelectFieldSelect: onSelectFieldSelectType,
-  onChangeUniteSwitch: onChangeUniteSwitchType
+  onChangeUniteSwitch: onChangeUniteSwitchType,
+  onChangePickAnswer: onChangePickAnswerType
 }
 
 const RednerView = ({
   personalFields,
+  pickField,
   selectField,
   selectedStep,
   formError,
   formAnswer,
   fieldAnswer,
+  pickAnswer,
   onChangeFormAnswer,
   onChangeUniteSwitch,
-  onSelectFieldSelect
+  onSelectFieldSelect,
+  onChangePickAnswer
 }:RenderViewType) => {
   const viewMap:any = {
     1: PersonalInfo({
@@ -48,6 +55,13 @@ const RednerView = ({
       fieldAnswer,
       onChangeUniteSwitch,
       onSelectFieldSelect
+    }),
+    3: PickField({
+      selectField,
+      pickField,
+      fieldAnswer,
+      pickAnswer,
+      onChangePickAnswer
     })
   }
   return viewMap[selectedStep]
@@ -61,24 +75,31 @@ const MultiStepForm = (props:propsType) => {
     formAnswer,
     formError,
     fieldAnswer,
+    pickAnswer,
     onChangeFormAnswer,
     onChangeSelectedFormStep,    
     onSelectFieldSelect,
-    onChangeUniteSwitch,} = useMultiStepForm({
+    onChangeUniteSwitch,
+    onChangePickAnswer
+  } = useMultiStepForm({
       personalFields,
-      selectField
+      selectField,
+      pickField
     });
   
   const viewProps = {
     personalFields,
     selectField,
+    pickField,
     selectedStep,
     formError,
     formAnswer,
     fieldAnswer,
+    pickAnswer,
     onChangeFormAnswer,
     onSelectFieldSelect,
-    onChangeUniteSwitch
+    onChangeUniteSwitch,
+    onChangePickAnswer
   };
 
   const controllProps = {

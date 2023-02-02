@@ -10,3 +10,9 @@ export const REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export const FIRSTSELECT = 0 as const;
 export const SECONDSELECT = 1 as const;
 
+export const SELECTORICONMAP:{[id: number]: string} = {
+  1: "/asset/icon-arcade.svg",
+  2: "/asset/icon-advanced.svg",
+  3: "/asset/icon-pro.svg",
+}
+

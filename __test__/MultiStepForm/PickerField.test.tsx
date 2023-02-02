@@ -4,30 +4,34 @@ import { renderHook, act, cleanup } from '@testing-library/react'
 import useMultiStepForm from "@components/multiStepForm/useMultiStepForm";
 import { FIRSTSELECT, SECONDSELECT } from "@components/multiStepForm/constant";
 
-const testId = 2;
+const testId = 1
 
 describe("<SelectField/>", () => {
 
-  beforeEach(() => cleanup())
+  beforeEach(() => {
+    const {result} = renderHook(() => useMultiStepForm({ personalFields, selectField, pickField}));
+    act(() => {
+      result.current.pickAnswer = [testId]
+    });
+
+  })
   const {result} = renderHook(() => useMultiStepForm({ personalFields, selectField, pickField}));
-  it ("should change fieldAnswer - id", () => {
+  it ("should add pick answer", () => {
     act(() => {
       result.current.onSelectFieldSelect(testId);
     })
 
-    expect(result.current.fieldAnswer).toEqual({
-      unit: FIRSTSELECT, id: testId
-    })
+    expect(result.current.pickAnswer.length).toBe(2)
   });
 
   it ("should change fieldAnswer - unit", () => {
+
     act(() => {
-      result.current.onChangeUniteSwitch()
+      result.current.onSelectFieldSelect(testId)
     })
 
-    expect(result.current.fieldAnswer).toEqual({
-      unit: SECONDSELECT, id: selectField.selections[0].id
-    })
+    expect(result.current.pickAnswer.length).toBe(1)
+
   })
 
 });
