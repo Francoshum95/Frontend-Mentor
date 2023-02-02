@@ -1,30 +1,36 @@
 import { useState, useMemo } from 'react';
 import * as constant from './constant';
-import { formStepType, personalFieldsType } from './type';
-
+import { formStepType, personalFieldsType, selectFieldType } from './type';
 
 export type isLoadingType = boolean;
 export type selectedStepType = number;
 export type onChangeSelectedFormStepType = (direction: string) => void;
-export type onChangeFormAnswerType = ({id, value}: {id: number, value: string}) => void;
-export type formType = {[id: number]: string}
+export type onChangeFormAnswerType = ({id, value}: {id: string, value: string}) => void;
+export type onChangeUniteSwitchType = () => void;
+export type onSelectFieldSelectType = (id:number) => void;
+export type formType = {[id: string]: string}
+export type fieldAnswerType = {unit: typeof constant.FIRSTSELECT |
+   typeof constant.SECONDSELECT, id: number}
 
 type useMultiStepFormType = ({
-  formStep,
-  personalFields
+  personalFields,
+  selectField
 }: {
-  formStep: formStepType,
-  personalFields: personalFieldsType
+  personalFields: personalFieldsType,
+  selectField: selectFieldType
 }) => {
   isLoading: isLoadingType,
   selectedStep: selectedStepType,
   formAnswer: formType,
-  formError: formType
+  formError: formType,
+  fieldAnswer: fieldAnswerType,
   onChangeFormAnswer: onChangeFormAnswerType
-  onChangeSelectedFormStep: onChangeSelectedFormStepType
+  onChangeSelectedFormStep: onChangeSelectedFormStepType,
+  onSelectFieldSelect: onSelectFieldSelectType,
+  onChangeUniteSwitch: onChangeUniteSwitchType
 }
 
-type getDefaultFormType = (formStep: formStepType) => {[id: number]: string};
+type getDefaultFormType = (personalFields: personalFieldsType) => {[id: string]: string};
 
 type validateFormType = ({
   personalFields,
@@ -34,13 +40,13 @@ type validateFormType = ({
   formAnswer: formType
 }) => {
   isError: boolean,
-  formError: {[id: number]: string}
+  formError: {[id: string]: string}
 };
 
-const getDefaultForm:getDefaultFormType = (formStep) => {
+export const getDefaultForm:getDefaultFormType = (personalFields) => {
   const form: formType = {};
 
-  formStep.forEach(({id}) => {
+  personalFields.forEach(({id}) => {
     form[id] = ""
   })
 
@@ -48,7 +54,8 @@ const getDefaultForm:getDefaultFormType = (formStep) => {
 }; 
 
 const validateForm:validateFormType = ({
-  personalFields, formAnswer
+  personalFields, 
+  formAnswer
 }) => {
   const formError:formType = {}
   let isError = false;
@@ -77,14 +84,17 @@ const validateForm:validateFormType = ({
 };
 
 const useMultiStepForm:useMultiStepFormType = ({
-  formStep,
-  personalFields
+  personalFields,
+  selectField
 }) => {
-  const defaultForm =  useMemo(() => getDefaultForm(formStep), []);
+  const defaultForm =  useMemo(() => getDefaultForm(personalFields), []);
 
   const [isLoading, setIsLoading] = useState<isLoadingType>(false)
-  const [selectedStep, setSelectedStep] = useState<selectedStepType>(constant.INFOSTEP);
+  const [selectedStep, setSelectedStep] = useState<selectedStepType>(constant.FORMSTEP);
   const [formAnswer, setFormAnswer] = useState<formType>(defaultForm);
+  const [fieldAnswer, setFieldAnswer] = useState<fieldAnswerType>({
+    unit: constant.FIRSTSELECT, id: selectField.selections[0].id
+  });
   const [formError, setFormError] = useState<formType>(defaultForm);
 
   const onChangeFormAnswer:onChangeFormAnswerType = ({id, value}) => {
@@ -95,12 +105,14 @@ const useMultiStepForm:useMultiStepFormType = ({
   };
   
   const onChangeSelectedFormStep: onChangeSelectedFormStepType = (direction) => {
-    if (direction === constant.BACK){
+    if (direction === constant.BACK && 
+      selectedStep !== constant.FORMSTEP
+      ){
       setSelectedStep((prevState) => prevState - 1)
     };
 
     if (direction === constant.NEXT){
-      if (selectedStep === constant.INFOSTEP){
+      if (selectedStep === constant.FORMSTEP){
         const {isError, formError} = validateForm({
           personalFields, formAnswer
         });
@@ -117,14 +129,36 @@ const useMultiStepForm:useMultiStepFormType = ({
     }
   }; 
 
+  const onSelectFieldSelect:onSelectFieldSelectType = (id) => {
+    const cloneFieldAnswer = {...fieldAnswer}
+    cloneFieldAnswer.id = id
+    setFieldAnswer(cloneFieldAnswer)
+  };
+
+  const onChangeUniteSwitch:onChangeUniteSwitchType = () => {
+    const cloneFieldAnswer = {...fieldAnswer}
+    
+
+    if (fieldAnswer.unit === constant.FIRSTSELECT){
+      cloneFieldAnswer.unit = constant.SECONDSELECT
+    } else {
+      cloneFieldAnswer.unit = constant.FIRSTSELECT
+    }
+
+    setFieldAnswer(cloneFieldAnswer)
+  };
+
 
   return {
     isLoading, 
     selectedStep,
     formAnswer,
     formError,
+    fieldAnswer,
     onChangeFormAnswer,
-    onChangeSelectedFormStep
+    onChangeSelectedFormStep,
+    onSelectFieldSelect,
+    onChangeUniteSwitch
   }
 };
 
