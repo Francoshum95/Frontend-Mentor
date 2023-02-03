@@ -137,7 +137,7 @@ const MultiStepForm = (props:propsType) => {
       />
       <div className="flex flex-col mobile:justify-center mobile:items-center">
         <div className="mobile:w-[90%] mobile:bg-white mobile:rounded-md mobile:relative top-[-86px] mobile:max-w-[430px]
-         z-[999] mobile:px-6 mobile:py-8 mobile:shadow-md md:px-[4rem] md:pb-[3rem] md:pt-[3rem] mobile:p-3">
+         z-[999] mobile:px-6 mobile:py-8 mobile:shadow-md md:px-[4rem] md:pb-[3rem] md:pt-[3rem] mobile:p-3 mobile:h-[30rem] mobile:overflow-auto">
           {
             isCheckout ? (
               null

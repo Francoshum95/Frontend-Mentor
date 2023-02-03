@@ -97,7 +97,7 @@ free to email us at support@loremgaming.com.`
 const MultiStepFormPage = () =>  (
   <div className='bg-magnolia min-h-full flex mobile:flex-col
     md:items-center md:justify-center h-screen'>
-    <div className="rounded-md md:bg-white md:m-6 
+    <div className="rounded-md md:bg-white md:p-5
       md:flex md:h-[600px] md:p-4md:max-w-[1440px]">
         <MultiStepForm
           formStep={formStep}
