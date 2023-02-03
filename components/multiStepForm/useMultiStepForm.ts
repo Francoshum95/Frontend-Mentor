@@ -100,7 +100,7 @@ const useMultiStepForm:useMultiStepFormType = ({
 
   const [isLoading, setIsLoading] = useState<isLoadingType>(false)
   const [isCheckout, setIsCheckout] = useState(false);
-  const [selectedStep, setSelectedStep] = useState<selectedStepType>(constant.CHECKOUTSTEP);
+  const [selectedStep, setSelectedStep] = useState<selectedStepType>(constant.FORMSTEP);
   const [formAnswer, setFormAnswer] = useState<formType>(defaultForm);
   const [fieldAnswer, setFieldAnswer] = useState<fieldAnswerType>({
     unit: constant.FIRSTSELECT, id: selectField.selections[0].id

@@ -9,7 +9,7 @@ type props = {
 const DoneView = ({
   doneMessage
 }: props) => (
-  <div className="flex items-center justify-center md:w-[40rem] flex-col h-[20rem] md:h-[31rem]">
+  <div className="flex items-center justify-center md:w-[27.1rem] flex-col h-[20rem] md:h-[31rem]">
     <Image
       src={"/asset/icon-thank-you.svg"}
       width={60}
