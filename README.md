@@ -15,11 +15,11 @@ The purpose of this project is to document the intermediate-level challenges pre
 Example of usage can be found in `/page/MultiStepForm/index.tsx` 
 Property  | Description  | Description 
 ------------- | ------------- | ------------- 
-formStep  | The basic content of sidebar and the main content. The `id`  is the step serial should start from 1| { id: number, sideBar: string, header: string, content: string }[]
-personalFieldsType  | Custom input field , the `fieldType` can be `'email'`, `'text'` or `'phone'` |{ id: string, field: string, placeholder: string fieldType: 'email' or 'phone' or 'text', isRequired: boolean }[];
-selectFieldType  |  In the `switch` property, each with a `switch` and a corresponding unit component. In the `selections` property, the price should also have two items that match with the corresponding `switch` item, with the index of the array items matching the index of the `switch` items. |{ id: string, field: string, placeholder: string fieldType: string, isRequired: boolean }[];
-pickFieldType  | In the `price` property, the price should also have two items that match with the corresponding `switch` item, with the index of the array items matching the index of the `switch` items. |{ id: string, field: string, placeholder: string fieldType: string, isRequired: boolean }[];
-doneMessageType | The message displayed after checkout. | string
+formStep  | The basic content of sidebar and the main conten. The `id`  is the step serial should start from 1| { id: number, sideBar: string, header: string, content: string }[]
+personalFields | Custom input field , the `fieldType` can be `'email'`, `'text'` or `'phone'` |{ id: string, field: string, placeholder: string fieldType: 'email' or 'phone' or 'text', isRequired: boolean }[];
+selectField  |  In the `switch` property, each with a `switch` and a corresponding unit component. In the `selections` property, the price should also have two items that match with the corresponding `switch` item, with the index of the array items matching the index of the `switch` items. |{ switch: { unit: string, name: string, title: string }[], selections: { id: number, title: string, content: string, price: number[] }[] }
+pickField  | In the `price` property, the price should also have two items that match with the corresponding `switch` item, with the index of the array items matching the index of the `switch` items. |{ id: number, price: number[], title: string, content: string }[]
+doneMessage | The message displayed after checkout. | string
 
 
 
