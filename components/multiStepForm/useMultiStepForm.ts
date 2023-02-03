@@ -1,12 +1,13 @@
 import { useState, useMemo } from 'react';
 import * as constant from './constant';
-import { formStepType, personalFieldsType, pickFieldType, selectFieldType } from './type';
+import { personalFieldsType, selectFieldType } from './type';
 
 export type isLoadingType = boolean;
 export type isCheckoutType = boolean;
 export type selectedStepType = number;
 export type onChangeSelectedFormStepType = (direction: string) => void;
-export type onChangeFormAnswerType = ({id, value}: {id: string, value: string}) => void;
+export type onChangeFormAnswerType = ({id, value}: 
+  {id: string, value: string, fieldType: typeof constant.PHONE | typeof  constant.TEXT  | typeof  constant.EMAIL }) => void;
 export type onChangeUniteSwitchType = () => void;
 export type onSelectFieldSelectType = (id:number) => void;
 export type onChangePickAnswerType = (id: number) => void;
@@ -18,11 +19,9 @@ export type pickAnswerType = number[];
 type useMultiStepFormType = ({
   personalFields,
   selectField,
-  pickField
 }: {
-  personalFields: personalFieldsType,
-  selectField: selectFieldType,
-  pickField: pickFieldType
+  personalFields: personalFieldsType
+  selectField: selectFieldType
 }) => {
   isLoading: isLoadingType,
   isCheckout: isCheckoutType,
@@ -94,7 +93,6 @@ const validateForm:validateFormType = ({
 const useMultiStepForm:useMultiStepFormType = ({
   personalFields,
   selectField,
-  pickField
 }) => {
   const defaultForm =  useMemo(() => getDefaultForm(personalFields), []);
 
@@ -108,9 +106,13 @@ const useMultiStepForm:useMultiStepFormType = ({
   const [pickAnswer, setPickAnswer] = useState<pickAnswerType>([]);
   const [formError, setFormError] = useState<formType>(defaultForm);
   
-  const onChangeFormAnswer:onChangeFormAnswerType = ({id, value}) => {
+  const onChangeFormAnswer:onChangeFormAnswerType = ({id, value, fieldType}) => {
     const newFormAnswer = {... formAnswer}
 
+    if (fieldType === constant.PHONE){
+      value = value.replace(/[^0-9]/g, "")
+    };
+    
     newFormAnswer[id] = value
     setFormAnswer(newFormAnswer)
   };

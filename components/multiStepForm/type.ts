@@ -1,3 +1,5 @@
+import { PHONE, TEXT, EMAIL } from "./constant";
+
 export type formStepType = {
   id: number,
   sideBar: string,
@@ -10,9 +12,9 @@ export type personalFieldsType = {
   id: string,
   field: string,
   placeholder: string,
-  fieldType: string,
+  fieldType: typeof PHONE | typeof TEXT  | typeof EMAIL
   isRequired: boolean
-}[];
+}[]
 
 export type selectFieldType = {
   switch: {

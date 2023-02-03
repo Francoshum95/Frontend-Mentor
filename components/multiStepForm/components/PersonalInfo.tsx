@@ -1,5 +1,6 @@
 import { formType, onChangeFormAnswerType, } from "../useMultiStepForm";
 import type { personalFieldsType } from "../type";
+import {TEXT, EMAIL, PHONE} from '../constant';
 
 type props = {
   formAnswer: formType,
@@ -11,7 +12,7 @@ type props = {
 type inputFieldType = {
   id: string,
   field: string,
-  fieldType: string,
+  fieldType:  typeof PHONE | typeof TEXT  | typeof EMAIL ,
   placeholder: string,
   value: string,
   error: string | null,
@@ -38,11 +39,11 @@ const InputField = ({
       className={` ${error ? 'border-strawberry-red' : 'border-magnolia'} border-2 rounded-md px-4 py-2 max-w-[450px] w-full
         focus:outline-none focus:bg-white focus:border-purplish-blue 
         cursor-pointer mt-2 mobile:text-sm`}
-      required={true}
-      type={fieldType === 'email' ? 'email' : 'text'}
+        pattern="[0-9]*"
+      type={fieldType === EMAIL ? EMAIL : TEXT}
       placeholder={placeholder}
       value={value}
-      onChange={(e) => onChange({id, value: e.target.value})}
+      onChange={(e) => onChange({id, value: e.target.value, fieldType})}
     />
   </div>
 )

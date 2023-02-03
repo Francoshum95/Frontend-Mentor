@@ -103,8 +103,7 @@ const MultiStepForm = (props:propsType) => {
     onChangePickAnswer
   } = useMultiStepForm({
       personalFields,
-      selectField,
-      pickField
+      selectField
     });
   
   const viewProps = {

@@ -1,4 +1,5 @@
 import { MultiStepForm } from "@components/index";
+import { personalFieldsType } from "@components/multiStepForm/type";
 
 export const formStep = [{
   id: 1,
@@ -22,7 +23,7 @@ export const formStep = [{
   content: "Double-check everything looks OK before confirming."
 }];
 
-export const personalFields = [{
+export const personalFields:personalFieldsType = [{
   id: "1",
   field: "Name",
   placeholder: "e.g. Vanese Mint",

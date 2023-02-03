@@ -15,3 +15,7 @@ export const SELECTORICONMAP:{[id: number]: string} = {
   2: "/asset/icon-advanced.svg",
   3: "/asset/icon-pro.svg",
 }
+
+export const PHONE = "phone" as const;
+export const EMAIL = "email" as const;
+export const TEXT = "text" as const;
