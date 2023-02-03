@@ -18,7 +18,7 @@
   }
 
   .select-box{
-    @apply px-3 py-5 border-[1px] rounded-md cursor-pointer
+    @apply px-3 py-4 border-[1px] rounded-md cursor-pointer
   }
   
   .box-select{

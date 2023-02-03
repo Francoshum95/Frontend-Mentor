@@ -36,14 +36,14 @@ const Selector = ({
     {selectField.selections.map(({ id, title, content, price }) => (
       <div
         className={`${fieldAnswer.id === id ? "box-selected" : "box-select"}  
-          flex md:flex-col select-box md:h-[10rem] md:w-[8.54rem]`}
+          flex md:flex-col select-box md:h-[9rem] md:w-[8.54rem]`}
         key={id}
         onClick={() => onSelectFieldSelect(id)}
       >
-        <Image src={SELECTORICONMAP[id]} width={40} height={40} alt={""} />
+        <Image src={SELECTORICONMAP[id]} width={35} height={35} alt={""} />
         <div className="md:mt-auto md:ml-0 ml-5">
-          <h3 className="text-marine-blue font-medium">{title}</h3>
-          <h4 className="text-cool-gray md:text-sm">{`$${
+          <h3 className="text-marine-blue font-medium text-sm md:text-md">{title}</h3>
+          <h4 className="text-cool-gray text-sm">{`$${
             price[fieldAnswer.unit]
           }/${selectField.switch[fieldAnswer.unit].unit}`}</h4>
           {fieldAnswer.unit === SECONDSELECT ? (
@@ -62,7 +62,7 @@ const Switch = ({
 }: SwithchType) => (
   <div
     className="w-full h-12 rounded-md bg-alabaster 
-    mt-7 flex justify-center items-center text-marine-blue font-medium"
+    mt-4 md:mt-9 flex justify-center items-center text-marine-blue font-medium"
   >
     <span>{selectField.switch[0].name}</span>
     <button
@@ -87,7 +87,7 @@ const SelectField = ({
   onChangeUniteSwitch,
 }: props) => {
   return (
-    <div className="md: mt-5">
+    <div className="md:mt-5">
       <Selector
         selectField={selectField}
         fieldAnswer={fieldAnswer}
