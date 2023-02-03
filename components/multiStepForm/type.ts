@@ -34,3 +34,5 @@ export type pickFieldType = {
   title: string,
   content: string
 }[]
+
+export type doneMessageType = string;

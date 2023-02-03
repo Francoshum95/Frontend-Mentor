@@ -89,6 +89,10 @@ export const pickField = [
   }
 ]
 
+export const doneMessage = `Thanks for confirming your subscription! We hope you have
+fun using our platform. If you ever need support, please feel
+free to email us at support@loremgaming.com.`
+
 const MultiStepFormPage = () =>  (
   <div className='bg-magnolia min-h-full flex mobile:flex-col
     md:items-center md:justify-center h-screen'>
@@ -99,6 +103,7 @@ const MultiStepFormPage = () =>  (
           personalFields={personalFields}
           selectField={selectField}
           pickField={pickField}
+          doneMessage={doneMessage}
         />
     </div>
   </div>

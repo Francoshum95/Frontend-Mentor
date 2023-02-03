@@ -3,6 +3,7 @@ import * as constant from './constant';
 import { formStepType, personalFieldsType, pickFieldType, selectFieldType } from './type';
 
 export type isLoadingType = boolean;
+export type isCheckoutType = boolean;
 export type selectedStepType = number;
 export type onChangeSelectedFormStepType = (direction: string) => void;
 export type onChangeFormAnswerType = ({id, value}: {id: string, value: string}) => void;
@@ -24,6 +25,7 @@ type useMultiStepFormType = ({
   pickField: pickFieldType
 }) => {
   isLoading: isLoadingType,
+  isCheckout: isCheckoutType,
   selectedStep: selectedStepType,
   formAnswer: formType,
   formError: formType,
@@ -97,6 +99,7 @@ const useMultiStepForm:useMultiStepFormType = ({
   const defaultForm =  useMemo(() => getDefaultForm(personalFields), []);
 
   const [isLoading, setIsLoading] = useState<isLoadingType>(false)
+  const [isCheckout, setIsCheckout] = useState(false);
   const [selectedStep, setSelectedStep] = useState<selectedStepType>(constant.CHECKOUTSTEP);
   const [formAnswer, setFormAnswer] = useState<formType>(defaultForm);
   const [fieldAnswer, setFieldAnswer] = useState<fieldAnswerType>({
@@ -104,7 +107,7 @@ const useMultiStepForm:useMultiStepFormType = ({
 });
   const [pickAnswer, setPickAnswer] = useState<pickAnswerType>([]);
   const [formError, setFormError] = useState<formType>(defaultForm);
-
+  
   const onChangeFormAnswer:onChangeFormAnswerType = ({id, value}) => {
     const newFormAnswer = {... formAnswer}
 
@@ -132,7 +135,11 @@ const useMultiStepForm:useMultiStepFormType = ({
           setFormError(defaultForm)
         }
       } else {
-        setSelectedStep((prevState) => prevState + 1)
+        if (selectedStep === constant.CHECKOUTSTEP){
+          setIsCheckout(true)
+        } else {
+          setSelectedStep((prevState) => prevState + 1)
+        }
       }
     }
   }; 
@@ -172,6 +179,7 @@ const useMultiStepForm:useMultiStepFormType = ({
   
   return {
     isLoading, 
+    isCheckout,
     selectedStep,
     formAnswer,
     formError,
