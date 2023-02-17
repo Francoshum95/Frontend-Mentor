@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet"/> 
+        <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet"/> 
       </Head>
       <body>
         <Main />

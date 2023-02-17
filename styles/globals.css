@@ -4,11 +4,19 @@
 
 @layer base {
   body {
-    @apply font-body text-[16px]
+    @apply text-[16px]
   }
 }
 
 @layer components {
+  .hover-effect {
+    @apply transition duration-200 ease-in-out
+  }
+
+  .hambuger-menu {
+    @apply block absolute bg-black h-0.5 w-5 transform transition duration-500 ease-in-out
+  }
+
   .container-mobile{
     @apply w-[375px]
   }
@@ -28,4 +36,5 @@
   .box-selected {
     @apply border-purplish-blue bg-alabaster
   }
+  
 }
