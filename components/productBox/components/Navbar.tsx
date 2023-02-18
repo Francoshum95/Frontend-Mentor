@@ -1,8 +1,17 @@
 import { useState } from "react";
 
-const menuItems = ["Collections", "Men", "Women", "About", "Contact"];
+type props = {
+  navbarMenuItems: string[]
+  navbarBrandIcon: string
+  userImage: string
+}
 
-const Navbar = ({}) => {
+
+const Navbar = ({
+  navbarMenuItems,
+  navbarBrandIcon,
+  userImage
+}:props) => {
   const [isToggleOpen, setIsToggleOpen] = useState(false);
 
   return (
@@ -36,7 +45,7 @@ const Navbar = ({}) => {
           ></span>
         </button>
         <a className="text-2xl text-black font-bold">
-          <img className="w-[8.5rem] h-[1.2rem]" src="/asset/logo.svg" />
+          <img className="w-[8.5rem] h-[1.2rem]" src={navbarBrandIcon} />
         </a>
         <div
           className={`transition duration-300 ease-in-out  ${
@@ -61,7 +70,7 @@ const Navbar = ({}) => {
               className={`${isToggleOpen ? 'mobile:flex':'mobile:hidden mobile:opacity-0'}
               md:flex gap-6 mobile:flex-col md:ml-5 mobile:absolute mobile:top-[5rem] mobile:left-[1.5rem]
               `}>
-              {menuItems.map((item, index) => (
+              {navbarMenuItems.map((item, index) => (
                 <li
                   className="md:border-b-[0.3rem] md:border-white hover-effect 
                 md:hover:border-orange h-full flex items-center cursor-pointer group/item"
@@ -104,7 +113,7 @@ const Navbar = ({}) => {
           </div>
         </button>
         <button className="rounded-full hover:border-orange border-2 hover-effect ">
-          <img className="w-9 h-9 mobile:w-5 mobile:h-5" src="/asset/image-avatar.png"></img>
+          <img className="w-9 h-9 mobile:w-5 mobile:h-5" src={userImage}></img>
         </button>
       </div>
     </nav>

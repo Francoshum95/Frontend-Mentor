@@ -1,5 +1,9 @@
-import Navbar from "@components/productBox/components/Navbar";
-import ProductCarousel from "@components/productBox/components/ProductCarousel";
+import { Navbar, ProductCarousel } from "@components/index";
+
+const navbarMenuItems = ["Collections", "Men", "Women", "About", "Contact"];
+const navbarBrandIcon = "/asset/logo.svg";
+const userImage = "/asset/image-avatar.png"
+
 
 const productImages = [
   "/asset/image-product-1.jpg",
@@ -16,6 +20,11 @@ const productThumbnail = [
 ];
 
 const EcommerceProductPage = () => {
+  const navbarProps = {
+    navbarMenuItems,
+    navbarBrandIcon,
+    userImage
+  }
   const productCarouelProps = {
     productImages,
     productThumbnail,
@@ -23,7 +32,9 @@ const EcommerceProductPage = () => {
 
   return (
     <div className="bg-white min-h-full h-screen font-kumbh-sans">
-      <Navbar />
+      <Navbar 
+        {...navbarProps}
+      />
       <div className="md:mt-[5rem] flex md:w-[70%] mx-auto mobile:justify-center">
         <div className="md:w-[40%]">
           <ProductCarousel {...productCarouelProps} />
