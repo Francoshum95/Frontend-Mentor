@@ -28,7 +28,7 @@ const ProductInfo = ({
   markdownPrice,
   maxQuantity,
 }: props) => {
-  const [, onAddCart] = useContext(CartCtx);
+  const {onAddCart} = useContext(CartCtx);
   const { isMin, isMax, shoppingProduct, onChangeProductQuantity } =
     useProductInfo({
       productImage,
@@ -39,7 +39,7 @@ const ProductInfo = ({
     });
   
   return (
-    <div className="mobile:p-6">
+    <div className="mobile:p-6 mobile:max-w-[30rem] mobile:mx-auto">
       <h4 className="text-orange font-bold my-2">{productBrand}</h4>
       <h1 className="text-black font-bold text-3xl my-2">{productName}</h1>
       <p className="text-sm text-grayish-blue font-bold my-2">{productDes}</p>
@@ -60,7 +60,7 @@ const ProductInfo = ({
       </div>
       <div className="flex mobile:flex-col md:justify-between my-2">
         <div
-          className="my-3 mobile:w-full rounded-md bg-light-graylish-blue 
+          className="mobile:my-3 mobile:w-full rounded-md bg-light-graylish-blue 
           px-3 py-3 flex justify-between md:w-[38%] select-none"
         >
           <button className={`${isMin && 'opacity-40'} text-orange font-bold`}
@@ -102,10 +102,11 @@ const ProductInfo = ({
           </button>
         </div>
         <button
+          disabled={isMin}
           onClick={() => onAddCart(shoppingProduct)}
-          className="bg-orange rounded-md py-3 hover-effect 
-          hover:opacity-30 text-white mobile:w-full md:w-[56%]
-          flex justify-center items-center">
+          className={`${isMin ? 'opacity-40' : 'hover-effect hover:opacity-30' }
+         bg-orange rounded-md mobile:py-3  text-white mobile:w-full md:w-[56%]
+          flex justify-center items-center`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
