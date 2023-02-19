@@ -94,7 +94,7 @@ const Carousel = ({
           </button>
         </div>
       </div>
-      <div className="mt-6 mobile:hidden gap-7 w-full flex justify-center">
+      <div className="mt-6 mobile:hidden gap-7 flex">
         {productThumbnail.map((item, index) => (
           <div
             key={index}
