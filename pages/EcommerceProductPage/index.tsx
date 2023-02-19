@@ -59,7 +59,7 @@ const EcommerceProductPage = () => {
         />
         <div className="md:mt-[5rem] flex md:w-[70%] mx-auto 
           mobile:justify-center md:justify-between mobile:flex-col">
-          <div className="md:w-[40%]">
+          <div className="md:w-[40%] mobile:flex mobile:justify-center">
             <ProductCarousel 
               {...productCarouelProps} 
             />

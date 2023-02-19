@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react';
 import Carousel from './Carousel';
 import Modal from './Modal';
 
-export type isModalOpenType = boolean;
+export type isModalOpenType = boolean
 export type onClickModalType = () => void;
+export type isMobileType = boolean
 
 type props = {
   productImages: productImagesType
@@ -16,10 +17,14 @@ const ProductCarousel = ({
   productThumbnail
 }:props) => {
   const [isModalOpen, setIsModalOpen] = useState<isModalOpenType>(false);
+  const [isMobile, setIsMobile] = useState<isMobileType>(false);
 
   const handleWindowsChagneModal = () => {
     if (window.innerWidth < 767) {
+      setIsMobile(true)
       setIsModalOpen(false)
+    } else {
+      setIsMobile(false)
     }
   };
 
@@ -37,7 +42,7 @@ const ProductCarousel = ({
   return (
     <>
       <Carousel
-        isModalOpen={isModalOpen}
+        isMobile={isMobile}
         productImages={productImages}
         productThumbnail={productThumbnail}
         onClickModal={onClickModal}

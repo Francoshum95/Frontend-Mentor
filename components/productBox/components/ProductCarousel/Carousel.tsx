@@ -1,18 +1,18 @@
 import useCarousel from "../hooks/useCarousel";
 import type { productImagesType, productThumbnailType } from "../../type";
-import { isModalOpenType, onClickModalType } from ".";
+import { isMobileType, onClickModalType } from ".";
 import { NEXT, PREV } from "@components/productBox/constant";
 
 export type imagePostionType = number;
 type props = {
-  isModalOpen: isModalOpenType;
+  isMobile: isMobileType
   productImages: productImagesType;
   productThumbnail: productThumbnailType;
   onClickModal: onClickModalType;
 };
 
 const Carousel = ({
-  isModalOpen,
+  isMobile,
   productImages,
   productThumbnail,
   onClickModal,
@@ -28,19 +28,19 @@ const Carousel = ({
 
   return (
     <>
-      <div className="relative">
+      <div className="relative w-fit">
         <div
-          className="overflow-hidden md:rounded-lg cursor-pointer "
-          onClick={() => onClickModal()}
+          className="overflow-hidden md:rounded-lg md:cursor-pointer "
+          onClick={() => { !isMobile && onClickModal()}}
         >
           <img
             src={productImages[imagePostion]}
-            className="w-full md:max-h-[26rem] mobile:max-h-[20rem] object-contain"
+            className="md:max-h-[26rem] mobile:max-h-[20rem] object-contain"
           />
         </div>
         <div
           className={`md:hidden justify-between mobile:absolute flex items-center top-1/2 md:translate-x-[-5%]
-            mobile:w-[90%] translate-y-[-50%] mobile:translate-x-[5%]`}
+             mobile:w-[90%] translate-y-[-50%] mobile:translate-x-[5%]`}
         >
           <button
             disabled={isFirstPosition}
