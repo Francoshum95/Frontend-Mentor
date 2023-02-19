@@ -1,10 +1,11 @@
-export type shopProductType = {
-  productId: number | null,
+export type productType = {
   productName: string,
+  productQuantity: number,
   originalPrice: number,
   markdownPrice: number,
-  quantity: number
+  productImage: string
 }
+
 
 export type productImagesType = string[];
 export type productThumbnailType = string[];
