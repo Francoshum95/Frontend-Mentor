@@ -39,11 +39,11 @@ const ProductInfo = ({
     });
   
   return (
-    <div className="mobile:p-6 mobile:max-w-[30rem] mobile:mx-auto">
+    <div className="mobile:p-6 mobile:max-w-[30rem] mobile:mx-auto md:max-w-[25rem]">
       <h4 className="text-orange font-bold my-2">{productBrand}</h4>
       <h1 className="text-black font-bold text-3xl my-2">{productName}</h1>
-      <p className="text-sm text-grayish-blue font-bold my-2">{productDes}</p>
-      <div className="flex md:flex-col mobile:justify-between my-2 mobile:items-center">
+      <p className="text-sm text-grayish-blue my-2">{productDes}</p>
+      <div className="flex md:flex-col mobile:justify-between my-5 mobile:items-center">
         <div className="md:mt-3">
           <span className="text-black font-bold text-xl">
             ${markdownPrice.toFixed(2)}
@@ -58,7 +58,7 @@ const ProductInfo = ({
           ${originalPrice.toFixed(2)}
         </span>
       </div>
-      <div className="flex mobile:flex-col md:justify-between my-2">
+      <div className="flex mobile:flex-col md:justify-between my-3">
         <div
           className="mobile:my-3 mobile:w-full rounded-md bg-light-graylish-blue 
           px-3 py-3 flex justify-between md:w-[38%] select-none"

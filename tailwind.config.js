@@ -30,7 +30,7 @@ module.exports = {
       },
       fontFamily: {
         'ubuntu': 'ubuntu',
-        'kumbh-sans': ['Kumbh', 'Sans']
+        'kumbh-sans': ['Kumbh Sans']
       },
       backgroundImage: {
         'sidebar-desktop': "url('/asset/bg-sidebar-desktop.svg')",

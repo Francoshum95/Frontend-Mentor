@@ -6,20 +6,29 @@ const Cart = () => {
 
   return (
     <button className="group/item hover:visible hover-effect">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="w-6 h-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-        />
-      </svg>
+      <div className="relative">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+          />
+        </svg>
+        {
+          checkoutItem.length > 0 && (
+            <div className="absolute py-[.1rem] px-2 bg-orange top-0 right-0 rounded-full">
+              <div className="text-[.4rem] text-white">{checkoutItem.length}</div>
+            </div>
+          )
+        }
+      </div>
       <div
         className="absolute mobile:w-full 
       md:w-[20rem] min-h-[15rem] md:top-[4.5rem] md:right-[4rem] hover:visible 
@@ -35,7 +44,7 @@ const Cart = () => {
           <div className="p-5">
             {checkoutItem.length > 0 ? (
               checkoutItem.map((item) => (
-                <div className="flex" key={item.productName}>
+                <div className="flex items-center" key={item.productName}>
                   <div>
                     <img
                       src={item.productImage}
