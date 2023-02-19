@@ -39,12 +39,12 @@ const ProductInfo = ({
     });
   
   return (
-    <div className="">
-      <h4 className="text-orange font-bold">{productBrand}</h4>
-      <h1 className="text-black font-bold text-3xl">{productName}</h1>
-      <p className="text-sm text-grayish-blue font-bold">{productDes}</p>
-      <div className="flex md:flex-col mobile:justify-between">
-        <div className="mt-3">
+    <div className="mobile:p-6">
+      <h4 className="text-orange font-bold my-2">{productBrand}</h4>
+      <h1 className="text-black font-bold text-3xl my-2">{productName}</h1>
+      <p className="text-sm text-grayish-blue font-bold my-2">{productDes}</p>
+      <div className="flex md:flex-col mobile:justify-between my-2 mobile:items-center">
+        <div className="md:mt-3">
           <span className="text-black font-bold text-xl">
             ${markdownPrice.toFixed(2)}
           </span>
@@ -58,9 +58,9 @@ const ProductInfo = ({
           ${originalPrice.toFixed(2)}
         </span>
       </div>
-      <div className="flex mobile:flex-col md:justify-between">
+      <div className="flex mobile:flex-col md:justify-between my-2">
         <div
-          className="mobile:w-full rounded-md bg-light-graylish-blue 
+          className="my-3 mobile:w-full rounded-md bg-light-graylish-blue 
           px-3 py-3 flex justify-between md:w-[38%] select-none"
         >
           <button className={`${isMin && 'opacity-40'} text-orange font-bold`}
@@ -103,7 +103,7 @@ const ProductInfo = ({
         </div>
         <button
           onClick={() => onAddCart(shoppingProduct)}
-          className="bg-orange rounded-md py-2 hover-effect 
+          className="bg-orange rounded-md py-3 hover-effect 
           hover:opacity-30 text-white mobile:w-full md:w-[56%]
           flex justify-center items-center">
           <svg
