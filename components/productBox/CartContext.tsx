@@ -3,38 +3,55 @@ import type { ReactNode } from "react";
 import type { productType } from "./type";
 
 type prosp = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
-export type checkoutItemType = productType[]
+export type checkoutItemType = productType[];
 export type onAddCartType = (newItem: productType) => void;
-export type CartCtxType = [checkoutItemType, onAddCartType]
+export type onRemoveProductType = (item: productType) => void;
 
-export const CartCtx = createContext<CartCtxType>([[], (newItem:productType) => {}]);
+export type CartCtxType = {
+  checkoutItem: checkoutItemType;
+  onAddCart: onAddCartType;
+  onRemoveProduct: onRemoveProductType;
+};
 
-export const CartContext = ({children}:prosp) => {
+export const CartCtx = createContext<CartCtxType>({
+  checkoutItem: [],
+  onAddCart: (newItem: productType) => {},
+  onRemoveProduct: (item: productType) => {},
+});
+
+export const CartContext = ({ children }: prosp) => {
   const [checkoutItem, setCheckoutItem] = useState<checkoutItemType>([]);
 
-  const onAddCart = (newItem:productType) => {
+  const onAddCart = (newItem: productType) => {
     const cloneCheckoutItem = [...checkoutItem];
-    const targetItem = cloneCheckoutItem.find(item => newItem.productName === item.productName);
+    const targetItem = cloneCheckoutItem.find(
+      (item) => newItem.productName === item.productName
+    );
 
-    if (targetItem){
+    if (targetItem) {
       targetItem.productQuantity += newItem.productQuantity;
     } else {
-      cloneCheckoutItem.push(newItem)
+      cloneCheckoutItem.push(newItem);
     }
-    
-    setCheckoutItem(cloneCheckoutItem)
+
+    setCheckoutItem(cloneCheckoutItem);
+  };
+
+  const onRemoveProduct = (product: productType) => {
+    const cloneCheckoutItem = [...checkoutItem];
+    const filteredItems = cloneCheckoutItem.filter(
+      (item) => item.productName !== product.productName
+    );
+
+    setCheckoutItem(filteredItems);
   };
 
   return (
-    <CartCtx.Provider
-      value={[checkoutItem, onAddCart]}
-    >
+    <CartCtx.Provider value={{ checkoutItem, onAddCart, onRemoveProduct }}>
       {children}
     </CartCtx.Provider>
-  )
+  );
 };
-
-
