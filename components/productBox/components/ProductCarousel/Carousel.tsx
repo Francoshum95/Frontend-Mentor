@@ -30,6 +30,7 @@ const Carousel = ({
     <>
       <div className="relative w-fit">
         <div
+          data-testid="open-modal-image"
           className="overflow-hidden md:rounded-lg md:cursor-pointer "
           onClick={() => { !isMobile && onClickModal()}}
         >
@@ -43,6 +44,7 @@ const Carousel = ({
              mobile:w-[90%] translate-y-[-50%] mobile:translate-x-[5%]`}
         >
           <button
+            role="carousel-prev"
             disabled={isFirstPosition}
             className={`${isFirstPosition && "opacity-50"} 
           bg-white rounded-full p-2 text-black hover-effec`}
@@ -68,6 +70,7 @@ const Carousel = ({
             </svg>
           </button>
           <button
+            role="carousel-next"
             disabled={isLastPosition}
             className={`${isLastPosition && "opacity-50"} 
           bg-white rounded-full p-2 text-black hover-effec`}

@@ -1,48 +1,91 @@
 import "@testing-library/jest-dom";
-import { renderHook, act } from '@testing-library/react'
+import {
+  renderHook,
+  act,
+  render,
+  screen,
+} from "@testing-library/react";
 import useMultiStepForm from "@components/multiStepForm/useMultiStepForm";
-import { selectField, personalFields, pickField } from "@pages/MultiStepForm";
-import * as constant from '@components/multiStepForm/constant';
-import { getDefaultForm } from "@components/multiStepForm/useMultiStepForm";
+import { selectField, personalFields } from "@pages/MultiStepForm";
+import * as constant from "@components/multiStepForm/constant";
+import Controller from "@components/multiStepForm/components/Controller";
+
+let isLoading = false;
+let selectedStep = constant.FORMSTEP;
+const onChangeSelectedFormStep = jest.fn();
 
 describe("<Controller/>", () => {
+  beforeEach(() => {
 
-  describe("FORMSTEP View", () => {
-    beforeEach(() => {
-      const {result} = renderHook(() => useMultiStepForm({ personalFields, selectField, pickField}));
+    isLoading=false;
+    selectedStep = constant.FORMSTEP;
 
-      act(() => {
-        result.current.selectedStep = constant.FORMSTEP;
-        
-      })
+    render(
+      <Controller
+        isLoading={isLoading}
+        selectedStep={selectedStep}
+        onChangeSelectedFormStep={onChangeSelectedFormStep}
+      />
+    )
+  }
+  );
+
+  it("should not BACK, if in the first step", () => {
+    const { result } = renderHook(() =>
+      useMultiStepForm({ personalFields, selectField })
+    );
+
+    act(() => {
+      result.current.selectedStep = constant.FORMSTEP;
     });
 
-    it ("should not BACK", () => {
-      const {result} = renderHook(() => useMultiStepForm({ personalFields, selectField, pickField}));
+    expect(screen.getByRole("controller-prev")).toHaveAttribute("disabled");
+  });
 
-      act(() => {
-        result.current.onChangeSelectedFormStep(constant.BACK)
-      });
+  it("should not BACK, if is loading", () => {
+    const { result, rerender } = renderHook(() =>
+      useMultiStepForm({ personalFields, selectField })
+    );
 
-      expect(result.current.selectedStep).toEqual(constant.FORMSTEP)
-
+    act(() => {
+      result.current.selectedStep = constant.SELECTSTEP;
     });
 
-    it ("should NEXT", () => {
-      const {result} = renderHook(() => useMultiStepForm({ personalFields, selectField, pickField}));
-      act(() => {
-        result.current.formAnswer = {"1": 'testing', "2": "testing@gmail.com", "3": "1234"};
-      })
+    rerender();
+    isLoading=true;
 
-      act(() => {
-        result.current.onChangeSelectedFormStep(constant.NEXT)        
-      });
-
-
-      expect(result.current.selectedStep).toBe(constant.SELECTSTEP)
-
-    });
+    expect(screen.getByRole("controller-prev")).toHaveAttribute("disabled");
   });
 
 
+
+  it("should not NEXT, if in the last step", async () => {
+    const { result, rerender } = renderHook(() =>
+      useMultiStepForm({ personalFields, selectField })
+    );
+
+    act(() => {
+      result.current.selectedStep = constant.DONE;
+    });
+
+    rerender();
+
+    expect(screen.getByRole("controller-prev")).toHaveAttribute("disabled");
+  });
+
+  it("should not NEXT, if is loaidng", async () => {
+    const { result, rerender } = renderHook(() =>
+      useMultiStepForm({ personalFields, selectField })
+    );
+
+    act(() => {
+      result.current.selectedStep = constant.SELECTSTEP;
+    });
+
+    isLoading=true;
+
+    rerender();
+
+    expect(screen.getByRole("controller-prev")).toHaveAttribute("disabled");
+  });
 });

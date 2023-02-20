@@ -25,6 +25,7 @@ const Controller = ({
       mobile:absolute mobile:bottom-0"
     >
       <button
+        role="controller-prev"
         className={`${
           isBackDisable &&
           "invisible cursor-default text-light-gray hover:text-marine-blue"
@@ -36,6 +37,7 @@ const Controller = ({
         Go Back
       </button>
       <button
+        role="controller-next"
         className={`${isNextDisable && "hidden"}
         px-4 py-3 md:bg-purplish-blue bg-marine-blue text-white rounded-md md:hover:bg-marine-blue md:focus:bg-marine-blue
         hover:bg-purplish-blue focus:bg-purplish-blue`}

@@ -70,12 +70,11 @@ const validateForm:validateFormType = ({
   personalFields.forEach(({
     id, fieldType, isRequired
   }) => {
+
     if (isRequired && !formAnswer[id]){
       isError = true;
       formError[id] = "This field is required"
-    } 
-
-    if (fieldType === 'email'){
+    } else if (fieldType === 'email'){
       if (!constant.REGEX.test(formAnswer[id])){
         isError = true;
         formError[id] = "The Email Format is Invalid"

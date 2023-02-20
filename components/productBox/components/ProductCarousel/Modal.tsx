@@ -19,13 +19,17 @@ const Modal = ({
   onClickModal,
 }: props) => {
   return (
-    <>
+    <div
+      data-testid={`modal-${isModalOpen}`}
+    >
       {isModalOpen && (
         <div
-          className="fixed inset-0 bg-very-dark-blue bg-opacity-80 transition-opacity z-10"
+        data-testid={`modal-close`}
+        className="fixed inset-0 bg-very-dark-blue bg-opacity-80 transition-opacity z-10"
           onClick={() => onClickModal()}
         >
           <div
+            data-testid={'modal-body'}
             className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
             onClick={(e) => {
               e.stopPropagation();
@@ -33,6 +37,7 @@ const Modal = ({
           >
             <div className="flex justify-end py-5">
               <button
+                role="close-modal"
                 className="text-white hover-effect hover:text-orange"
                 onClick={() => onClickModal()}
               >
@@ -59,7 +64,7 @@ const Modal = ({
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

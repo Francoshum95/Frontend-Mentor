@@ -18,6 +18,7 @@ const Navbar = ({ navbarMenuItems, navbarBrandIcon, userImage }: props) => {
     >
       <div className="flex items-center">
         <button
+          data-testid={"toggle-button"}
           onClick={() => setIsToggleOpen((prevState) => !prevState)}
           className="w-10 h-10 ml-2 relative md:hidden z-[21]"
         >
@@ -63,6 +64,7 @@ const Navbar = ({ navbarMenuItems, navbarBrandIcon, userImage }: props) => {
             }}
           >
             <ul
+              data-testid={`toggle-${isToggleOpen}`}
               className={`${
                 isToggleOpen ? "mobile:flex" : "mobile:hidden mobile:opacity-0"
               }

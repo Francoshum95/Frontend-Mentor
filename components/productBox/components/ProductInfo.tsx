@@ -63,7 +63,9 @@ const ProductInfo = ({
           className="mobile:my-3 mobile:w-full rounded-md bg-light-graylish-blue 
           px-3 py-3 flex justify-between md:w-[38%] select-none"
         >
-          <button className={`${isMin && 'opacity-40'} text-orange font-bold`}
+          <button 
+            role="decrease-quantity"
+            className={`${isMin && 'opacity-40'} text-orange font-bold`}
             disabled={isMin}
             onClick={() => onChangeProductQuantity(DECREASE)}
           >
@@ -78,10 +80,14 @@ const ProductInfo = ({
               <path strokeLinecap="round" strokeLinejoin="round" d="M18 12H6" />
             </svg>
           </button>
-          <span className="text-black font-bold">
+          <span 
+            data-testid="product-quantity"
+            className="text-black font-bold">
             {shoppingProduct.productQuantity}
           </span>
-          <button className={`${isMax && 'opacity-40'} text-orange font-bold`}
+          <button 
+            role="increase-quantity"
+            className={`${isMax && 'opacity-40'} text-orange font-bold`}
             disabled={isMax}
             onClick={() => onChangeProductQuantity(INCREASE)}
           >
@@ -102,6 +108,7 @@ const ProductInfo = ({
           </button>
         </div>
         <button
+          role="add-cart"
           disabled={isMin}
           onClick={() => onAddCart(shoppingProduct)}
           className={`${isMin ? 'opacity-40' : 'hover-effect hover:opacity-30' }

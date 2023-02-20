@@ -1,33 +1,32 @@
-import { Navbar, ProductCarousel } from "@components/index";
-import ProductInfo from "@components/productBox/components/ProductInfo";
-import { CartContext } from "@components/productBox/CartContext";
-
-const navbarMenuItems = ["Collections", "Men", "Women", "About", "Contact"];
-const navbarBrandIcon = "/asset/logo.svg";
-const userImage = "/asset/image-avatar.png"
+import { Navbar, ProductCarousel, ProductInfo, CartContext } from "@components/index";
 
 
-const productImages = [
+export const navbarMenuItems = ["Collections", "Men", "Women", "About", "Contact"];
+export const navbarBrandIcon = "/asset/logo.svg";
+export const userImage = "/asset/image-avatar.png"
+
+
+export const productImages = [
   "/asset/image-product-1.jpg",
   "/asset/image-product-2.jpg",
   "/asset/image-product-3.jpg",
   "/asset/image-product-4.jpg",
 ];
 
-const productThumbnail = [
+export const productThumbnail = [
   "/asset/image-product-1-thumbnail.jpg",
   "/asset/image-product-2-thumbnail.jpg",
   "/asset/image-product-3-thumbnail.jpg",
   "/asset/image-product-4-thumbnail.jpg",
 ];
 
-const productBrand = "SNEAKER COMPANY";
-const productName = "Fall Limited Edition Sneakers"
-const productDes = "These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer."
-const originalPrice = 250;
-const discointTag = "50%";
-const markdownPrice = 125;
-const maxQuantity = 10;
+export const productBrand = "SNEAKER COMPANY";
+export const productName = "Fall Limited Edition Sneakers"
+export const productDes = "These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer."
+export const originalPrice = 250;
+export const discointTag = "50%";
+export const markdownPrice = 125;
+export const maxQuantity = 10;
 
 const EcommerceProductPage = () => {
   const navbarProps = {

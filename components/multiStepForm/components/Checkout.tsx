@@ -157,7 +157,7 @@ const Checkout = ({
       </div>
       <div className="mt-4 flex justify-between p-4 ">
         <h4 className="text-sm text-cool-gray">{`Total (per ${selectField.switch[fieldAnswer.unit].title})`}</h4>
-        <span className="text-lg font-bold text-purplish-blue">
+        <span data-testid="total-price" className="text-lg font-bold text-purplish-blue">
           {`$${totalPrice} /${selectField.switch[fieldAnswer.unit].unit}`}
         </span>
       </div>
