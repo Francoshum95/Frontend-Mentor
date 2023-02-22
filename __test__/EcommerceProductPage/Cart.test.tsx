@@ -5,6 +5,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 
 const mockQuantityA_one = 1;
 const mockQuantityA_two = 3;
+const mockQuantityA_three = 7;
 const mockQuantityA_sum = mockQuantityA_one + mockQuantityA_two;
 const mockQuantityB = 1;
 
@@ -25,6 +26,14 @@ const mockProductA_two = {
   productImage: ""
 };
 
+const mockProductA_three = {
+  productName: "A",
+  productQuantity: mockQuantityA_three,
+  originalPrice: 10,
+  markdownPrice: 10,
+  productImage: ""
+};
+
 const mockProductB = {
   productName: "B",
   productQuantity: mockQuantityB,
@@ -32,7 +41,6 @@ const mockProductB = {
   markdownPrice: 12,
   productImage: ""
 };
-
 
 describe ("<Cart>", () => {
   let addProduct = mockProductA_one;
@@ -58,7 +66,7 @@ describe ("<Cart>", () => {
   }
 
   beforeEach(() => render(
-    <CartContext>
+    <CartContext maxQuantity={10}>
       <TestComponents/>
     </CartContext>)
     )
@@ -85,7 +93,18 @@ describe ("<Cart>", () => {
     fireEvent.click(screen.getByRole("add-item"))
     expect(screen.getByTestId("cart-items").children.length).toBe(2)
   });
-  
+
+  it("is should not add to cart", () => {
+    fireEvent.click(screen.getByRole("add-item"))
+    addProduct = mockProductA_two
+    fireEvent.click(screen.getByRole("add-item"))
+    addProduct = mockProductA_three;
+    fireEvent.click(screen.getByRole("add-item"))
+
+    expect(screen.getByTestId('quantity')).toHaveTextContent(`${mockQuantityA_sum}`)
+
+  });
+
 });
 
 

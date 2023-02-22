@@ -25,7 +25,7 @@ const ProductInfo = ({
   markdownPrice,
   maxQuantity,
 }: props) => {
-  const { isMin, isMax, quantity, onClickAddCart, onChangeProductQuantity } =
+  const { isMin, isMax, isCartMax, quantity, onClickAddCart, onChangeProductQuantity } =
     useProductInfo({
       productImage,
       productName,
@@ -81,8 +81,8 @@ const ProductInfo = ({
           </span>
           <button
             role="increase-quantity"
-            className={`${isMax && "opacity-40"} text-orange font-bold`}
-            disabled={isMax}
+            className={`${isMax || isCartMax && "opacity-40"} text-orange font-bold`}
+            disabled={isMax || isCartMax}
             onClick={() => onChangeProductQuantity(INCREASE)}
           >
             <svg
@@ -103,9 +103,9 @@ const ProductInfo = ({
         </div>
         <button
           role="add-cart"
-          disabled={isMin}
+          disabled={isMin || isCartMax}
           onClick={() => onClickAddCart()}
-          className={`${isMin ? "opacity-40" : "hover-effect hover:opacity-30"}
+          className={`${isMin || isCartMax ? "opacity-40" : "hover-effect hover:opacity-30"}
          bg-orange rounded-md mobile:py-3  text-white mobile:w-full md:w-[56%]
           flex justify-center items-center`}
         >

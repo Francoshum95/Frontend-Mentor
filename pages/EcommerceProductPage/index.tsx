@@ -51,7 +51,7 @@ const EcommerceProductPage = () => {
   }
 
   return (
-    <CartContext>
+    <CartContext maxQuantity={maxQuantity}>
       <div className="bg-white min-h-full h-screen font-kumbh-sans">
         <Navbar 
           {...navbarProps}

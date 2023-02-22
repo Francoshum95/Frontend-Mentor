@@ -1,8 +1,10 @@
 import { createContext, useState } from "react";
 import type { ReactNode } from "react";
 import type { productType } from "./type";
+import { defalutMaxQuantity } from "./constant";
 
 type prosp = {
+  maxQuantity?: number
   children: ReactNode;
 };
 
@@ -22,17 +24,21 @@ export const CartCtx = createContext<CartCtxType>({
   onRemoveProduct: (item: productType) => {},
 });
 
-export const CartContext = ({ children }: prosp) => {
+export const CartContext = ({ maxQuantity=defalutMaxQuantity, children }: prosp) => {
   const [checkoutItem, setCheckoutItem] = useState<checkoutItemType>([]);
 
   const onAddCart = (newItem: productType) => {
     const cloneCheckoutItem = [...checkoutItem];
+
     const targetItem = cloneCheckoutItem.find(
       (item) => newItem.productName === item.productName
     );
 
     if (targetItem) {
       targetItem.productQuantity += newItem.productQuantity;
+      if (targetItem.productQuantity > maxQuantity){
+        return 
+      }
     } else {
       cloneCheckoutItem.push(newItem);
     }

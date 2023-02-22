@@ -1,9 +1,15 @@
 import { useContext } from "react";
-import { CartCtx } from "../CartContext";
+import { CartCtx, checkoutItemType } from "../CartContext";
+
+const getCartItemCount = (checkoutItem:checkoutItemType) => {
+  return checkoutItem.reduce(
+    (accumulator, currentValue) => accumulator += currentValue.productQuantity, 0)
+};
 
 const Cart = () => {
   const { checkoutItem, onRemoveProduct } = useContext(CartCtx);
 
+  const totalCartItem = getCartItemCount(checkoutItem);
   return (
     <button className="group/item hover:visible hover-effect">
       <div className="relative">
@@ -22,9 +28,9 @@ const Cart = () => {
           />
         </svg>
         {
-          checkoutItem.length > 0 && (
+          totalCartItem > 0 && (
             <div className="absolute py-[.1rem] px-2 bg-orange top-0 right-0 rounded-full">
-              <div className="text-[.4rem] text-white">{checkoutItem.length}</div>
+              <div className="text-[.4rem] text-white">{totalCartItem}</div>
             </div>
           )
         }
