@@ -1,7 +1,5 @@
 import "@testing-library/jest-dom";
-import { act, fireEvent, render, renderHook, screen, waitFor } from '@testing-library/react'
-import { CartContext } from "@components/productBox/CartContext";
-import ProductInfo from "@components/productBox/components/ProductInfo";
+import { act, renderHook } from '@testing-library/react'
 import useProductInfo from "@components/productBox/components/hooks/useProductInfo";
 import { DECREASE, INCREASE } from "@components/productBox/constant";
 
@@ -31,9 +29,7 @@ describe("<ProductInfo/>", () => {
       result.current.onChangeProductQuantity(INCREASE)
     })
 
-    waitFor(() => result.current.shoppingProduct.productQuantity)
-
-    expect(result.current.shoppingProduct.productQuantity).toBe(1);
+    expect(result.current.quantity).toBe(1);
 
 
   });
@@ -48,7 +44,7 @@ describe("<ProductInfo/>", () => {
     }))
 
     act(() => {
-      result.current.shoppingProduct.productQuantity = mockProduct.maxQuantity;
+      result.current.setQuantity(mockProduct.maxQuantity)
     })
 
     rerender()
@@ -57,8 +53,7 @@ describe("<ProductInfo/>", () => {
       result.current.onChangeProductQuantity(INCREASE)    
     })
 
-    expect(result.current.shoppingProduct.productQuantity).toBe(mockProduct.maxQuantity);
-
+    expect(result.current.quantity).toBe(mockProduct.maxQuantity);
   });
 
   it ("should decrease the quantity ", () => {
@@ -71,7 +66,7 @@ describe("<ProductInfo/>", () => {
     }))
 
     act(() => {
-      result.current.shoppingProduct.productQuantity = 1
+      result.current.quantity = 1
     })
 
     rerender()
@@ -80,7 +75,7 @@ describe("<ProductInfo/>", () => {
       result.current.onChangeProductQuantity(DECREASE)    
     })
 
-    expect(result.current.shoppingProduct.productQuantity).toBe(0);
+    expect(result.current.quantity).toBe(0);
 
   })
 
@@ -97,7 +92,7 @@ describe("<ProductInfo/>", () => {
       result.current.onChangeProductQuantity(DECREASE)    
     })
 
-    expect(result.current.shoppingProduct.productQuantity).toBe(0);
+    expect(result.current.quantity).toBe(0);
 
   })
 

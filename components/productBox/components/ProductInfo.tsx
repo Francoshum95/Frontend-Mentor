@@ -1,8 +1,5 @@
-import { useContext } from "react";
-import { CartCtx } from "../CartContext";
 import useProductInfo from "./hooks/useProductInfo";
 import { INCREASE, DECREASE } from "../constant";
-
 
 export interface useProductinfoProps {
   productImage: string;
@@ -28,8 +25,7 @@ const ProductInfo = ({
   markdownPrice,
   maxQuantity,
 }: props) => {
-  const {onAddCart} = useContext(CartCtx);
-  const { isMin, isMax, shoppingProduct, onChangeProductQuantity } =
+  const { isMin, isMax, quantity, onClickAddCart, onChangeProductQuantity } =
     useProductInfo({
       productImage,
       productName,
@@ -37,7 +33,7 @@ const ProductInfo = ({
       markdownPrice,
       maxQuantity,
     });
-  
+
   return (
     <div className="mobile:p-6 mobile:max-w-[30rem] mobile:mx-auto md:max-w-[25rem]">
       <h4 className="text-orange font-bold my-2">{productBrand}</h4>
@@ -63,9 +59,9 @@ const ProductInfo = ({
           className="mobile:my-3 mobile:w-full rounded-md bg-light-graylish-blue 
           px-3 py-3 flex justify-between md:w-[38%] select-none"
         >
-          <button 
+          <button
             role="decrease-quantity"
-            className={`${isMin && 'opacity-40'} text-orange font-bold`}
+            className={`${isMin && "opacity-40"} text-orange font-bold`}
             disabled={isMin}
             onClick={() => onChangeProductQuantity(DECREASE)}
           >
@@ -80,14 +76,12 @@ const ProductInfo = ({
               <path strokeLinecap="round" strokeLinejoin="round" d="M18 12H6" />
             </svg>
           </button>
-          <span 
-            data-testid="product-quantity"
-            className="text-black font-bold">
-            {shoppingProduct.productQuantity}
+          <span data-testid="product-quantity" className="text-black font-bold">
+            {quantity}
           </span>
-          <button 
+          <button
             role="increase-quantity"
-            className={`${isMax && 'opacity-40'} text-orange font-bold`}
+            className={`${isMax && "opacity-40"} text-orange font-bold`}
             disabled={isMax}
             onClick={() => onChangeProductQuantity(INCREASE)}
           >
@@ -110,10 +104,11 @@ const ProductInfo = ({
         <button
           role="add-cart"
           disabled={isMin}
-          onClick={() => onAddCart(shoppingProduct)}
-          className={`${isMin ? 'opacity-40' : 'hover-effect hover:opacity-30' }
+          onClick={() => onClickAddCart()}
+          className={`${isMin ? "opacity-40" : "hover-effect hover:opacity-30"}
          bg-orange rounded-md mobile:py-3  text-white mobile:w-full md:w-[56%]
-          flex justify-center items-center`}>
+          flex justify-center items-center`}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
