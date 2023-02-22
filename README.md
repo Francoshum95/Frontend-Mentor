@@ -11,7 +11,8 @@ The purpose of this project is to document the intermediate-level challenges pre
 ## Multi-step form 
 Live:  https://frontendmentor-components.netlify.app/multistepform 
 
-Example of usage can be found in `/page/MultiStepForm/index.tsx` 
+Example of usage can be found in [`/page/MultiStepForm/index.tsx`](https://github.com/Francoshum95/Frontend-Mentor/tree/main/pages/EcommerceProductPage)
+
 Property  | Description  | Description 
 ------------- | ------------- | ------------- 
 formStep  | The basic content of sidebar and the main conten. The `id`  is the step serial should start from 1| { id: number, sideBar: string, header: string, content: string }[]
@@ -23,9 +24,19 @@ doneMessage | The message displayed after checkout. | string
 ## E-commerce product page
 Live:  https://frontendmentor-components.netlify.app/EcommerceProductPage 
 
-The E-commerce components have a Context `CartCtx` that changes/stores cart items. `CartContext` should be wrapped at the top level of the components. Example of usage can be found in `/page/EcommerceProductPage/index.tsx` 
+The E-commerce components have a Context `CartCtx` that changes/stores cart items. `CartContext` should be wrapped at the top level of the components. Example of usage can be found in [`/page/MultiStepForm/index.tsx`](https://github.com/Francoshum95/Frontend-Mentor/tree/main/pages/EcommerceProductPage)
 
-##  CartContext
+###  CartContext
+
+input: 
+
+Property  | Description  | Description 
+------------- | ------------- | ------------- 
+maxQuantity  | maximum quantity add to the cart | number  
+
+
+context:
+
 `
 productType = { productName: string, productQuantity: number originalPrice: number, markdownPrice: number, productImage: string
 }
@@ -37,7 +48,7 @@ checkoutItem  | cart items | {checkoutItem: productType[]
 onAddCart | add new item to the cart | (newItem: productType) => void;
 onRemoveProduct  | remove product from the cart | (item: productType) => void; 
 
-##  Narbar
+###  Narbar
 
 Property  | Description  | Description 
 ------------- | ------------- | ------------- 
@@ -45,7 +56,7 @@ checnavbarMenu  | menu items | string[]
 navbarBrandIcon | brand icon image | string
 userImage  | user profile image | string 
 
-## ProductCarousel
+### ProductCarousel
 
 Property  | Description  | Description 
 ------------- | ------------- | ------------- 
@@ -53,7 +64,7 @@ productImages  | product images | string[]
 productThumbnail | product thumbnails  | string[]
 
 
-## ProductInfo
+### ProductInfo
 
 Property  | Description  | Description 
 ------------- | ------------- | ------------- 
@@ -66,7 +77,7 @@ discointTag  | discount tag | string
 markdownPrice  | The product selling price are shown on the cart page when the user adds an item to their cart using the 'onAddCart' function, and shown on the product page | number  
 maxQuantity  | maximum quantity add to the cart | number  
 
-## Cart
+### Cart
 The cart icon displays the items currently in the cart, and hovering over it reveals a dropdown with more details about the cart.
 
 
